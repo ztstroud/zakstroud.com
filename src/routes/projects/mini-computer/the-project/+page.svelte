@@ -124,3 +124,7 @@
     more complex languages to be compiled to various architectures easily.
 </p>
 
+<NextPrevNav
+    next={{ url: "initial-hardware-planning", text: "Planning the Initial Hardware" }}
+/>
+
