@@ -1,0 +1,32 @@
+/**
+ * Defines all colors for the site as variables.
+ *
+ * Defining all colors as varialbes allows us to properly setup dark themes.
+ */
+
+:root {
+    --background-color: #FFF;
+    --background-alt-color: #EEE;
+
+    --text-primary-color: #111;
+    --text-secondary-color: #555;
+
+    --link-color: #15F;
+    --link-color-visited: #A3F;
+    --link-color-hover: #000;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: #181828;
+        --background-alt-color: #282830;
+
+        --text-primary-color: #EEE;
+        --text-secondary-color: #999;
+
+        --link-color: #48F;
+        --link-color-visited: #A7F;
+        --link-color-hover: #FFF;
+    }
+}
+

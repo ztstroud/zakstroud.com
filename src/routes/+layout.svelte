@@ -1,53 +1,22 @@
-<script>
-	import Header from './Header.svelte';
-	import './styles.css';
-</script>
-
-<div class="app">
-	<Header />
-
-	<main>
-		<slot />
-	</main>
-
-	<footer>
-		<p>visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit</p>
-	</footer>
-</div>
+<nav>
+    <a href="/">Home</a> |
+    <a href="/projects">Projects</a>
+</nav>
+<main>
+    <slot />
+</main>
 
 <style>
-	.app {
-		display: flex;
-		flex-direction: column;
-		min-height: 100vh;
-	}
+    @import "./theme.css";
+    @import "./styles.css";
+    @import "./tables.css";
 
-	main {
-		flex: 1;
-		display: flex;
-		flex-direction: column;
-		padding: 1rem;
-		width: 100%;
-		max-width: 64rem;
-		margin: 0 auto;
-		box-sizing: border-box;
-	}
+    nav,
+    main {
+        width: 100%;
+        max-width: 48rem;
 
-	footer {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		padding: 12px;
-	}
-
-	footer a {
-		font-weight: bold;
-	}
-
-	@media (min-width: 480px) {
-		footer {
-			padding: 12px 0;
-		}
-	}
+        margin: 0 auto;
+    }
 </style>
+

@@ -1,0 +1,49 @@
+/**
+* Provides simple styles for tables.
+*
+* Tables have sticky headers, both vertically and horizontally.
+*
+* Tables do not use border-collapse, because it is incompatible with sticky headers. We need the ability to control what
+* cells have borders on what sides.
+*/
+
+table {
+    margin: auto;
+
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+table th, table td {
+    padding: 0.25rem 0.5rem;
+
+    border-bottom: 1px solid var(--text-secondary-color);
+    border-right: 1px solid var(--text-secondary-color);
+
+    background-color: var(--background-alt-color);
+}
+
+table > :first-child > tr:first-child th,
+table > :first-child > tr:first-child td {
+    border-top: 1px solid var(--text-secondary-color);
+}
+
+table th:first-child,
+table td:first-child {
+    border-left: 1px solid var(--text-secondary-color);
+}
+
+table thead th {
+    position: sticky;
+    top: 0;
+}
+
+table th:first-child {
+    position: sticky;
+    left: 0;
+}
+
+table thead th:first-child {
+    z-index: 1;
+}
+
