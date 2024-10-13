@@ -127,5 +127,6 @@
 
 <NextPrevNav
     prev={{ url: "the-project", text: "The Project" }}
+    next={{ url: "register-atom", text: "Register Atom" }}
 />
 
