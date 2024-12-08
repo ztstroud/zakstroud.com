@@ -29,8 +29,12 @@
 </header>
 
 <h2>Projects</h2>
-<div class="project clear-both left">
-    <img src={miniComputerImage} alt="mini-computer screenshot">
+<div class="project clear-both">
+    <img
+        src={miniComputerImage}
+        alt="mini-computer screenshot"
+        class="left"
+    >
     <h3>
         <a href="/projects/mini-computer/the-project">Mini Computer</a> |
         <a
@@ -44,7 +48,7 @@
         Programming languages built on top of virtual hardware, all built from scratch.
     </p>
 </div>
-<div class="project right">
+<div class="project">
     <h3>
         <a href="/">zakstroud.com</a> |
         <a
@@ -67,11 +71,6 @@
     .project img {
         max-height: 10em;
         max-width: 50%;
-    }
-
-    .project.left img {
-        float: left;
-        margin: 0 1em 0 0;
     }
 
     .icon :global(svg) {

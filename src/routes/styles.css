@@ -67,6 +67,11 @@ img.center {
     margin: 2rem auto;
 }
 
+img.left {
+    float: left;
+    margin: 0 1rem 1rem 0;
+}
+
 .clear-both::after {
     content: "";
     display: block;
