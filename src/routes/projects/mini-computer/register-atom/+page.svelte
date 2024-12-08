@@ -335,5 +335,6 @@ Move the value in register 2 to register 0
 
 <NextPrevNav
     prev={{ url: "/projects/mini-computer/initial-hardware-planning", text: "Planning the Initial Hardware" }}
+    next={{ url: "/projects/mini-computer/jump-atom", text: "Jumping in Atom" }}
 />
 
