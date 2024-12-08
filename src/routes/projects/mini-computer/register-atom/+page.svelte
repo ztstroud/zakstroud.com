@@ -120,6 +120,7 @@
 <img
     src={imageHardware}
     alt="Screenshot of hardware.dig"
+    class="center"
 />
 
 <h3>Pieces</h3>
@@ -190,6 +191,7 @@
 <img
     src={imageControl}
     alt="Screenshot of control.dig"
+    class="center"
 />
 <p>
     I won't always describe the exact inner workings of the control module, but for this first implementation I want to

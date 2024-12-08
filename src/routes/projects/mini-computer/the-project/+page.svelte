@@ -49,6 +49,7 @@
 <img
     src="https://raw.githubusercontent.com/hneemann/Digital/refs/heads/master/distribution/screenshot.png"
     alt="Screenshot of Digital"
+    class="center"
 >
 <p>
     Outside of Digital, I am allowed to use a text editor to write notes so that they can be shared and kept in version
