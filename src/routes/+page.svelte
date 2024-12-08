@@ -29,7 +29,7 @@
 </header>
 
 <h2>Projects</h2>
-<div class="project left">
+<div class="project clear-both left">
     <img src={miniComputerImage} alt="mini-computer screenshot">
     <h3>
         <a href="/projects/mini-computer/the-project">Mini Computer</a> |
@@ -72,12 +72,6 @@
     .project.left img {
         float: left;
         margin: 0 1em 0 0;
-    }
-
-    .project::after {
-        content: "";
-        display: block;
-        clear: both;
     }
 
     .icon :global(svg) {
