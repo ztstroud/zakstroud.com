@@ -1,4 +1,7 @@
 <script>
+    import GithubIcon from "$lib/icons/github.svelte";
+    import LinkedinIcon from "$lib/icons/linkedin.svelte";
+
     import miniComputerImage from "./images/mini-computer.png";
 </script>
 
@@ -8,7 +11,21 @@
 </svelte:head>
 
 <header>
-    <h1>Zak Stroud</h1>
+    <h1>
+        Zak Stroud |
+        <a
+            href="https://github.com/ztstroud"
+            class="icon"
+            target="_blank"
+            title="View my GitHub"
+        ><GithubIcon /></a>
+        <a
+            href="https://linkedin.com/in/ztstroud"
+            class="icon"
+            target="_blank"
+            title="View my Linkedin"
+        ><LinkedinIcon /></a>
+    </h1>
 </header>
 
 <h2>Projects</h2>
@@ -39,6 +56,10 @@
         content: "";
         display: block;
         clear: both;
+    }
+
+    .icon :global(svg) {
+        vertical-align: middle;
     }
 </style>
 
