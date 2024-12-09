@@ -31,13 +31,29 @@
 <h2>Projects</h2>
 <div class="project left">
     <img src={miniComputerImage} alt="mini-computer screenshot">
-    <h2><a href="/projects/mini-computer/the-project">Mini Computer</a></h2>
+    <h2>
+        <a href="/projects/mini-computer/the-project">Mini Computer</a> |
+        <a
+            href="https://github.com/ztstroud/mini-computer"
+            class="icon"
+            target="_blank"
+            title="View mini-computer on GitHub"
+        ><GithubIcon /></a>
+    </h2>
     <p>
         Programming languages built on top of virtual hardware, all built from scratch.
     </p>
 </div>
 <div class="project right">
-    <h2><a href="/">zakstroud.com</a></h2>
+    <h2>
+        <a href="/">zakstroud.com</a> |
+        <a
+            href="https://github.com/ztstroud/zakstroud.com"
+            class="icon"
+            target="_blank"
+            title="View zakstroud.com on GitHub"
+        ><GithubIcon /></a>
+    </h2>
     <p>
         This is where you are right now! My personal website, showing off my projects.
     </p>
