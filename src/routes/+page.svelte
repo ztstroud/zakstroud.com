@@ -29,12 +29,17 @@
 </header>
 
 <h2>Projects</h2>
-
-<div class="project">
+<div class="project left">
     <img src={miniComputerImage} alt="mini-computer screenshot">
     <h2><a href="/projects/mini-computer/the-project">Mini Computer</a></h2>
     <p>
         Programming languages built on top of virtual hardware, all built from scratch.
+    </p>
+</div>
+<div class="project right">
+    <h2><a href="/">zakstroud.com</a></h2>
+    <p>
+        This is where you are right now! My personal website, showing off my projects.
     </p>
 </div>
 
@@ -44,11 +49,12 @@
     }
 
     .project img {
-        float: left;
-
         max-height: 10em;
         max-width: 50%;
+    }
 
+    .project.left img {
+        float: left;
         margin: 0 1em 0 0;
     }
 
