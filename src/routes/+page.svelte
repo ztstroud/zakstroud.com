@@ -4,6 +4,7 @@
 
     import meImage from "./images/me.jpeg";
     import miniComputerImage from "./images/mini-computer.png";
+    import plainZshImage from "./images/plain.zsh.png";
 </script>
 
 <svelte:head>
@@ -65,6 +66,26 @@
 </div>
 <div class="project">
     <h3>
+        plain.zsh |
+        <a
+            href="https://github.com/ztstroud/plain.zsh"
+            class="icon"
+            target="_blank"
+            title="View plain.zsh on GitHub"
+        ><GithubIcon /></a>
+    </h3>
+    <p>
+        A simple zsh theme using simple ASCII characters that I use daily. It gives me just enough information about git
+        repositories, running jobs, and command execution time.
+    </p>
+    <img
+        src={plainZshImage}
+        alt="Screenshot of plain.zsh in Alacritty"
+        class="center"
+    />
+</div>
+<div class="project">
+    <h3>
         <a href="/">zakstroud.com</a> |
         <a
             href="https://github.com/ztstroud/zakstroud.com"
@@ -95,6 +116,9 @@
 
     .project img {
         max-height: 10em;
+    }
+
+    .project img.left {
         max-width: 50%;
     }
 
