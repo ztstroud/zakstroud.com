@@ -72,6 +72,11 @@ img.left {
     margin: 0 1rem 1rem 0;
 }
 
+img.right {
+    float: right;
+    margin: 0 0 1rem 1rem;
+}
+
 .clear-both::after {
     content: "";
     display: block;
