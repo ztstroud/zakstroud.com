@@ -45,7 +45,8 @@
         ><GithubIcon /></a>
     </h3>
     <p>
-        Programming languages built on top of virtual hardware, all built from scratch.
+        Programming languages and compilers built on top of virtual hardware, all built from scratch with the aim of
+        learning about foundational concepts of computing.
     </p>
 </div>
 <div class="project">
@@ -59,7 +60,7 @@
         ><GithubIcon /></a>
     </h3>
     <p>
-        This is where you are right now! My personal website, showing off my projects.
+        This is where you are right now! My personal website, showing off and documenting me and my projects.
     </p>
 </div>
 
