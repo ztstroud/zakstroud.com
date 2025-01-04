@@ -2,6 +2,7 @@
     import GithubIcon from "$lib/icons/github.svelte";
     import LinkedinIcon from "$lib/icons/linkedin.svelte";
 
+    import meImage from "./images/me.jpeg";
     import miniComputerImage from "./images/mini-computer.png";
 </script>
 
@@ -27,6 +28,19 @@
         ><LinkedinIcon /></a>
     </h1>
 </header>
+
+<div class="bio clear-both">
+    <img
+        src={meImage}
+        alt="Me"
+        class="right"
+    >
+    <p>
+        I am a software developer at <b>Amazon</b> with 4+ years of experience building robust maintainable software at
+        scale. I graduated from the University of Utah's computer science program, where I also worked as a teaching
+        assitant. Interested in building and improving developer tooling.
+    </p>
+</div>
 
 <h2>Projects</h2>
 <div class="project clear-both">
@@ -67,6 +81,16 @@
 <style>
     .project {
         margin: 1em 0;
+    }
+
+    .bio img {
+        max-width: 25%;
+    }
+
+    @media screen and (max-width: 400px) {
+        .bio img {
+            display: none;
+        }
     }
 
     .project img {
