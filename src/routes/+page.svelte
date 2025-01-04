@@ -30,11 +30,6 @@
 
 <h2>Projects</h2>
 <div class="project clear-both">
-    <img
-        src={miniComputerImage}
-        alt="mini-computer screenshot"
-        class="left"
-    >
     <h3>
         <a href="/projects/mini-computer/the-project">Mini Computer</a> |
         <a
@@ -44,6 +39,11 @@
             title="View mini-computer on GitHub"
         ><GithubIcon /></a>
     </h3>
+    <img
+        src={miniComputerImage}
+        alt="mini-computer screenshot"
+        class="left"
+    >
     <p>
         Programming languages and compilers built on top of virtual hardware, all built from scratch with the aim of
         learning about foundational concepts of computing.
