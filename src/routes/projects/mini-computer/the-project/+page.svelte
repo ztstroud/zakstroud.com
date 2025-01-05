@@ -126,6 +126,6 @@
 </p>
 
 <NextPrevNav
-    next={{ url: "initial-hardware-planning", text: "Planning the Initial Hardware" }}
+    next={{ url: "/projects/mini-computer/initial-hardware-planning", text: "Planning the Initial Hardware" }}
 />
 
