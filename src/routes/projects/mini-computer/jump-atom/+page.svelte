@@ -848,5 +848,8 @@ Halt</code></pre>
     This instruction will become even more useful as I add the ability to read and write from memory.
 </p>
 
-<NextPrevNav prev={{ url: "/projects/mini-computer/register-atom", text: "Register Atom" }} />
+<NextPrevNav
+    prev={{ url: "/projects/mini-computer/register-atom", text: "Register Atom" }}
+    next={{ url: "/projects/mini-computer/memory-atom", text: "Memory in Atom" }}
+/>
 
