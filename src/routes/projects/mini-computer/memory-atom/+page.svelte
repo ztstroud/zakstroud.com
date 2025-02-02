@@ -140,6 +140,6 @@ HALT
 </p>
 
 <NextPrevNav
-    prev={{ url: '/projects/mini-computer/jump-atom', text: 'Jumping in Atom' }}
+    prev={{ url: "/projects/mini-computer/jump-atom", text: "Jumping in Atom" }}
 />
 
