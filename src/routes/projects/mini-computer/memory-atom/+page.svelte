@@ -141,5 +141,6 @@ HALT
 
 <NextPrevNav
     prev={{ url: "/projects/mini-computer/jump-atom", text: "Jumping in Atom" }}
+    next={{ url: "/projects/mini-computer/testing-and-reorganizing-atom", text: "Testing and Reorganizing Atom" }}
 />
 
