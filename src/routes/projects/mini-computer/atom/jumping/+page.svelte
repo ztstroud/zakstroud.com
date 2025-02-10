@@ -849,7 +849,7 @@ Halt</code></pre>
 </p>
 
 <NextPrevNav
-    prev={{ url: "/projects/mini-computer/register-atom", text: "Register Atom" }}
-    next={{ url: "/projects/mini-computer/memory-atom", text: "Memory in Atom" }}
+    prev={{ url: "/projects/mini-computer/atom/registers/", text: "Register Atom" }}
+    next={{ url: "/projects/mini-computer/atom/memory/", text: "Memory in Atom" }}
 />
 

@@ -126,7 +126,7 @@
 </p>
 
 <NextPrevNav
-    prev={{ url: "/projects/mini-computer/the-project", text: "The Project" }}
-    next={{ url: "/projects/mini-computer/register-atom", text: "Register Atom" }}
+    prev={{ url: "/projects/mini-computer/the-project/", text: "The Project" }}
+    next={{ url: "/projects/mini-computer/atom/registers/", text: "Register Atom" }}
 />
 

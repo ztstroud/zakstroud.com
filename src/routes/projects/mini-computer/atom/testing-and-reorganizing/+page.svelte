@@ -334,7 +334,7 @@ HALT
 </p>
 
 <NextPrevNav
-    prev={{ url: "/projects/mini-computer/memory-atom", text: "Memory in Atom" }}
-    next={{ url: "/projects/mini-computer/procedures-in-atom", text: "Procedures in Atom" }}
+    prev={{ url: "/projects/mini-computer/atom/memory/", text: "Memory in Atom" }}
+    next={{ url: "/projects/mini-computer/atom/procedures/", text: "Procedures in Atom" }}
 />
 
