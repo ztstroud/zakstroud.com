@@ -255,5 +255,6 @@ HALT
 
 <NextPrevNav
     prev={{ url: "/projects/mini-computer/atom/testing-and-reorganizing/", text: "Testing and Reorganizing Atom" }}
+    next={{ url: "/projects/mini-computer/atom/fibonacci/", text: "Fibonacci in Atom" }}
 />
 

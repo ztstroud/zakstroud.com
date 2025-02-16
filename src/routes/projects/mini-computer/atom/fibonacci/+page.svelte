@@ -1,0 +1,314 @@
+<script lang="ts">
+    import NextPrevNav from "$lib/NextPrevNav.svelte";
+</script>
+
+<svelte:head>
+    <title>Fibonacci on Atom | Mini Computer</title>
+</svelte:head>
+
+<h1>Fibonacci on Atom</h1>
+<p>
+    With the ability to write procedures, I want to try writing some examples that are more complicated that my simple
+    tests. I want to do this with a classic example, computing numbers in the Fibonacci sequence. This page describes
+    change between <a href="https://github.com/ztstroud/mini-computer/tree/atom-procedure">#atom-procedure</a> and
+    <a href="https://github.com/ztstroud/mini-computer/tree/???">#???</a> in the git repository.
+</p>
+
+<h2>Recursive Fibonacci</h2>
+<p>
+    First up, a pure recursive implementation. You have probably seen this before, but if not, here is some simple
+    pseudo code:
+</p>
+<pre><code>fn fibonacci(n)
+    if(n &lt;= 0)
+        return 0
+
+    if(n == 1)
+        return 1
+
+    return fibonacci(n - 1) + fibonacci(n - 2)
+</code></pre>
+<p>
+    I don't have access to something that is this high level, I have to use my assembly. First up, I am going to
+    establish some conventions for comments to help me structure my procedures. A function is ceclarated with a comment
+    of the format <code>;=NAME</code>, where <code>NAME</code> is the name of the procedure. When calling a procedure, I
+    will keep a note by the offset, with a format <code>;&gt;NAME</code>. This is just some bookkeeping for myself if I
+    need to recauclate the offset. I will also use the format <code>;NAME</code> to mark a label, which is also
+    something that I can jump to. Comments that start with a space are just a comment.
+</p>
+<p>
+    The first thing that needs to happen is to check if <code>r0</code> is less than or equal to zero, or if it is equal
+    to one. In the pseudo code, I split these into two different statments, which feels really natural. However, in a
+    direct translation into assembly each comparison requires a literal value (for now, maybe a comparison against a
+    literal is a good instruction to have), and each would require a separate comparision. Because I can re-use a
+    comparison, I can actually acheive the same result with one literal and one comparison.
+</p>
+<pre><code>;=fibonacci
+; give a number N in r0
+; puts the Nth Fibonacci number in r0
+
+; Setup r1 with the value 0x0001, needed for decrementing
+SUB r1 r1
+SETLO r1 0x01
+
+; Decrement r0, serving as both a comparison to 0x0001
+; and preparing for the first recursive call if needed
+SUB r0 r1
+
+; If r0 was greater than 0x0001, continue on to the full calculation
+JG 0x06;&gt;calculate
+
+; If r0 is equal to 0x0001, jump down and return 0x0001
+JEQ 0x02;&gt;return1
+
+; return 0
+SUB r0 r0
+RET
+
+;return1
+SUB r0 r0
+SETLO r0 0x01
+RET
+
+;calculate
+; I already have 0x0001 in r1, I can use it to prepare N - 2
+; Since fibonacci only calls itself, I could make some further
+; optimizations, but I will explore that later
+MOV r0 r2
+SUB r2 r1
+
+; I need to save N - 2 for after the function call
+PUSH r2
+
+; Execute the recursive call for N - 1
+CALL 0xF2;&gt;fibonacci (-14)
+
+; Now I can recover N - 2, but I also need to save the result
+; of the first recursive call for after the second
+POP r2
+PUSH r0
+
+; Make the second recursive call with N - 2
+MOV r2 r0
+CALL 0xEE;&gt;fibonacci (-18)
+
+; Recover the result of the first recursive call, sum it with
+; the first, and return that value
+POP r1
+ADD r0 r1
+RET
+</code></pre>
+<p>
+    Finally, I just need to setup and call the function. This needs to preceed the procedure itself, as Atom always
+    starts executing from memory address <code>0x0000</code>. After the function call the result will be in r0 and I
+    halt the computer.
+</p>
+<pre><code>SETLO r0 0x0A
+CALL 0x01;&gt;fibonacci
+HALT
+</code></pre>
+<p>
+    Running this with the argument <code>0x000A</code> results in the value <code>0x0037</code>. In decimal, the 10th
+    Fibonacci number is 55, which is correct.
+</p>
+
+<h2>Performance</h2>
+<p>
+    This simple recursive implementation doesn't perform particularly well. This is a known problem, caculating
+    Fibonacci this way repeatedly calculates the same numbers many times. To start to get a sense of this, I added a
+    probe that counts how many clock cycles have passed. More specifically it counts how many times the clocks has risen
+    and fallen, which means that each instrution takes 4 cycles. Measuring both rising and falling edges makes this more
+    useful for debugging, because I can describe the exact phase of execution of an instruction. It also lets know how
+    long a program took before halting. For this implemtnation with an argument of <code>0x000A</code>, this probe
+    counts 8004 cycles.
+</p>
+<p>
+    A solution to the problem with the simple recursive solution is to memoize it. This will require me to save a cache
+    of values that I can check during the execution of the function. In this case, I can just select a memory address
+    and then add <code>N</code> to it to represent my cache. If the value is zero, the cache is empty, but if it has a
+    value then I can return it without further computation. In pseudo code, it looks like this:
+</p>
+<pre><code>cache = []
+
+fn fibonacci(n)
+    if(cache[n] != 0)
+        return cache[n]
+
+    if(n &lt;= 0)
+        return 0
+
+    if(n == 1)
+        return 1
+
+    value = fibonacci(n - 1) + fibonacci(n - 2)
+    cache[n] = value
+
+    return value
+</code></pre>
+<p>
+    It is mostly the same as the simple solution, but with some bookkeeping at the start and end. The assembly is
+    slightly more complicated, because we have to keep track of more values for this bookkeeping.
+</p>
+<pre><code>SETLO rF 0x80 ; cache base, 0x0080
+
+; The call is just like the simple solution
+SETLO r0 0x0A
+CALL 0x01;&gt;fib
+HALT
+
+;=fib
+; give a number N in r0
+; puts fib(N) in r0
+
+; check cache
+MOV rF r7 ; copy the cache base
+ADD r7 r0 ; add N to it
+READ r7 0x0 r7 ; read the value
+CMP r7 rE ; compare it to zero
+
+; If equal to zero, we need to calculate the value
+JEQ 0x02;&gt;nocache
+
+; If not, we return the cache value
+MOV r7 r0
+RET
+
+;nocache
+; I need to subtract one form r0 for the comparison, but
+; I also need a copy of it when updating the cache later
+MOV r0 r6
+
+; This is the same as the simple solution
+SUB r1 r1 ; zero out r1
+SETLO r1 0x01 ; set r1 to 0x0001
+
+SUB r0 r1
+JG 0x06;&gt;calculate
+
+JEQ 0x02;&gt;return1
+
+; return 0
+SUB r0 r0 ; zero out r0
+RET
+
+;return1
+SUB r0 r0 ; zero out r0
+SETLO r0 0x01 ; set r to 0x0001
+RET
+
+;calculate
+; Because I am calculating the value with recursive calls,
+; I need to save r6 (N) for after the calls
+PUSH r6 ; save original argument
+
+; This is again the same as the simple solution
+MOV r0 r2
+SUB r2 r1
+PUSH r2 ; save argument - 2
+
+CALL 0xE9;&gt;fib (-23)
+
+POP r2 ; pop argument - 2
+PUSH r0 ; save response
+
+MOV r2 r0
+CALL 0xE5;&gt;fib (-27)
+
+POP r1 ; pop result of first recursive call
+ADD r0 r1 ; sum responses (r0 is second call, r1 is first call)
+
+; Now that I have the calculated value, I need to write it to the cache
+POP r2 ; pop N
+MOV rF r7 ; copy cache base
+ADD r7 r2 ; add N to it
+WRITE r7 0x0 r0 ; write the calculated value
+
+RET
+</code></pre>
+<p>
+    You can see that this code is a fair bit more complicated. Is it worth it? This version correctly computes that
+    Fibonacci number <code>0x000A</code> is <code>0x0037</code> in 1312 cycles. That is an 84% reduction, which is
+    pretty good! If you look at the memory address of the cache while the program executes, you can see the cache
+    suddenly fill up just before the program completes. This is because the first call for 10, which makes a call for 9,
+    which makes a call for 8, etc down to 2. As you go back up the call stack, each value saves its result to the cache,
+    and because it is in the cache all other calls for that number exit early.
+</p>
+
+<h2>More Performance</h2>
+<p>
+    The performance of the memoized solution is much better than the simple solution. It converts the problem from
+    exponential growth to linear growth. However, if all I want is one Fibonacci number then I can do even better with
+    an iterative solution.
+</p>
+<pre><code>SETLO r0 0x0A ; argument
+; r1 is counter
+
+SETLO r2 0x01 ; r2 is previous (1)
+SETHI r3 0xFF ; r3 is previous previous (-1)
+SETLO r3 0xFF
+
+SETLO r4 0x01 ; constant 0x0001
+
+;loop
+CMP r1 r0
+JG 0x06;&gt;done
+
+ADD r3 r2
+
+; swap r2 r3
+MOV r2 rF
+MOV r3 r2
+MOV rF r3
+
+ADD r1 r4
+
+JMP 0xF8;&gt;loop (-8)
+
+;done
+MOV r2 r0
+HALT
+</code></pre>
+<p>
+    This solution works by keeping track of the previous two numbers and adding them together repeatedly. The pseudo
+    code would look like this:
+</p>
+<pre><code>last = 1
+lastlast = -1
+
+count = 0
+N = 10
+
+while count &lt;= N
+    lastlast += last
+
+    temp = last
+    last = lastlast
+    lastlast = temp
+</code></pre>
+<p>
+    This solution arrives at the same result, but in 388 cycles, which is a further 70% reduction. Where the memoized
+    solution could really shine is if I needed to repeat calls for Fibonacci numbers (I don't know why I would need
+    that, but image if I did). Part, or maybe even all of the work, will already be completed, where the iterative
+    solution must always calculate it from scratch.
+</p>
+
+<h2>An Interesting Optimization</h2>
+<p>
+    While creating the recursive solution, I realized that I could reduce a small piece of the work. In each call to the
+    function, I setup <code>r1</code> with the value <code>0x0001</code> for the purpose of decrementing. Because
+    fibonacci only calls itself, I have full control over the life of the registers. This means that on the first call,
+    from the outside world, I could setup <code>r1</code>. The recursive calls could jump <code>SUB r0 r1</code>
+    directly, skipping this work. This only works because fibonacci knows everything about the call tree underneath
+    itself, and can guarantee that r1 is never reused.
+</p>
+<p>
+    With this optimization, Fibonacci number <code>0x000A</code> is found in 6596 cycles. That is a reduction of 1408
+    cycles (18%), all of which were in a way being wasted. I have a feeling this would be hard to generalize, especially
+    as I start to define the ABI of Atom. Right now I am free to do whatever I like because each program is totally
+    bespoke.
+</p>
+
+<NextPrevNav
+    prev={{ url: "/projects/mini-computer/atom/procedures/", text: "Procedures in Atom" }}
+/>
+
