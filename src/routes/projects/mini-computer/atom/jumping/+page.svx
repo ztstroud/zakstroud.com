@@ -224,23 +224,14 @@ also will include a **negative flag**, which just if the signed interpretation
 of the number is negative. In other words, is the most significant bit a one.
 All of this is encoded into the ALU, as shown below.
 
-<img
-    src={imageFlags}
-    alt="Screen shot of flags logic"
-    class="center"
-/>
-
+![Screen shot of flags logic]({imageFlags})
 
 The ALU has one four bit flag output, with each bit representing one of these
 flags. The next thing I need to to is save the flag output between instructions,
 which I will do with a register. This value needs to be saved because the
 comparison is part of a different instruction than the jump itself.
 
-<img
-    src={imageFlagRegister}
-    alt="Screen shot of flag register"
-    class="center"
-/>
+![Screen shot of flag register]({imageFlagRegister})
 
 I will save the value of the flags in this register for any instruction that
 writes the ALU output to the data buffer. This might change later, but for now
@@ -274,11 +265,7 @@ Using the flags, I can determine if a jump should or should not be executed. You
 may have noticed the `jumpDecider` module in the previous screenshot. It takes
 the saved flags along with the jump type and determines if a jump should occur.
 
-<img
-    src={imageJumpDecider}
-    alt="Screen shot of the internals of the jump decider"
-    class="center"
-/>
+![Screen shot of the internals of the jump decider]({imageJumpDecider})
 
 The first four are fairly simple, and just pass a flag or its inverse. The next
 eight types are unsigned and signed comparisons. You might notice that there are
@@ -327,11 +314,7 @@ bits, extending the sign bit. These two values are fed into the PC, with the
 combined jump signal enabling value storing, and sending the summed value as the
 value to store. 
 
-<img
-    src={imageRelativeJump}
-    alt="Screen shot of main hardware circuit"
-    class="center"
-/>
+![Screen shot of main hardware circuit]({imageRelativeJump})
 
 ## Halt
 
@@ -456,11 +439,7 @@ This instruction adds a few control lines that are fed into a new module, the
 `jumpCalc`. This replaces the addition circuit that simply added the immediate
 value to the PC.
 
-<img
-    src={imageJumpCalc}
-    alt="Screen shot of flags logic"
-    class="center"
-/>
+![Screen shot of flags logic]({imageJumpCalc})
 
 This circuit take the PC, immediate, and the value of the current argument
 register. It also takes two control signals, `JReg` and `RRel`. When `JReg` is

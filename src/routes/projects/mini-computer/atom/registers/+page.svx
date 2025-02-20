@@ -92,11 +92,7 @@ through the commits between the tags
 [#register-atom](https://github.com/ztstroud/mini-computer/tree/register-atom)
 in the git repository.
 
-<img
-    src={imageHardware}
-    alt="Screenshot of hardware.dig"
-    class="center"
-/>
+![Screenshot of hardware.dig]({imageHardware})
 
 ### Pieces
 
@@ -169,11 +165,7 @@ instructions at once. Control signals are used to enable other modules based
 upon an instruction, or control when or where data is sent. Each instruction
 will have a unique output of control signals.
 
-<img
-    src={imageControl}
-    alt="Screenshot of control.dig"
-    class="center"
-/>
+![Screenshot of control.dig]({imageControl})
 
 I won't always describe the exact inner workings of the control module, but for
 this first implementation I want to describe my thoughts. First, I added an

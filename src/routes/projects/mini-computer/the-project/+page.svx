@@ -48,11 +48,8 @@ I am going to start out using a tool called
 circuitry. While I think a physical circuit would be neat, I want to be able to
 preserve a history of the circuit in a useable and shareable form.
 
-<img
-    src="https://raw.githubusercontent.com/hneemann/Digital/refs/heads/master/distribution/screenshot.png"
-    alt="Screenshot of Digital"
-    class="center"
->
+![Screenshot of
+Digital](https://raw.githubusercontent.com/hneemann/Digital/refs/heads/master/distribution/screenshot.png)
 
 Outside of Digital, I am allowed to use a text editor to write notes so that
 they can be shared and kept in version control along side the computer.

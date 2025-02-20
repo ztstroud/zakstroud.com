@@ -290,62 +290,40 @@ some holes in it, but I think this is sufficient for now. After solving the bug
 revealed by the set test, all test pass and the computer is working. As a
 reminder, it looks like this.
 
-<img
-    src={initialImage}
-    alt="Atoms initial state"
-    class="center"
-/>
+![Atoms initial state]({initialImage})
 
 First, I want to centralize around a core bus, including more than just the data
 line. This way I can route various lines to many components without there being
 random wires all over the place.
 
-<img
-    src={busImage}
-    alt="Atom centralized around a bus"
-    class="center"
-/>
+![Atom centralized around a bus]({busImage})
 
 I also moved the control signal to tunnels, which removes a lot of wiring. I
 would like to being them back over time, and let them inform how components are
 laid out. I am also going to merge some components together and create new sub
 circuits for things like the address calculator.
 
-<img
-    src={consolidateImage}
-    alt="Atom with circuits consolidated"
-    class="center"
-/>
+![Atom with circuits consolidated]({consolidateImage})
 
 There are some components that produce an output that is only fed into one other
 circuit. To make that a bit easier to see, I will highlight different lines in
 different colors.
 
-<img
-    src={consolidateHighlightedImage}
-    alt="Atom with circuits consolidated and lines highlighted"
-    class="center"
-/>
+![Atom with circuits consolidated and lines
+highlighted]({consolidateHighlightedImage})
 
 In particular, I notice that the jumpCalc and the jumpDecider only feed into the
 PC itself. I will reorganize them so that they are closer to the PC.
 
-<img
-    src={reorganizedHighlightedImage}
-    alt="Atom with circuits reorganized and lines highlighted"
-    class="center"
-/>
+![Atom with circuits reorganized and lines
+highlighted]({reorganizedHighlightedImage})
 
 This does mean that the Flags are now on the bus, but I may want to use them for
 other things later so I think that is fine. You can see that the new PC (dark
 green) and the final decision to jump (cyan) are much shorter because they are
 near to the PC. Without highlight, you can see the current state of Atom below.
 
-<img
-    src={reorganizedImage}
-    alt="Atom with circuits reorganized"
-    class="center"
-/>
+![Atom with circuits reorganized]({reorganizedImage})
 
 I think that this is better, but how much or even if it is better depends on the
 viewer. I have re-run all the test that I wrote at the begging on this circuit,

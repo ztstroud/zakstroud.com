@@ -123,11 +123,8 @@ Because I have already handled getting the address, writing is simply a matter
 of adding a new control line that enables storing and connecting the data input
 to the data bus.
 
-<img
-    src={circuitImage}
-    alt="Screenshot of the full circuit of Atom with memory instructions"
-    class="center"
-/>
+![Screenshot of the full circuit of Atom with memory
+instructions]({circuitImage})
 
 This is getting a bit messy, and I would like to take some time to fix it up,
 but I will cover that in another installation. I will need to create some tests

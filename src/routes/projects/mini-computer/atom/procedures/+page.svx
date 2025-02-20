@@ -97,11 +97,7 @@ stack. The return instruction is also very similar to a jump, except that I
 need to use a value from memory. More specifically, it needs to: write the value
 in RAM at the SP to the PC and decrement the stack pointer.
 
-<img
-    src={callretImage}
-    alt="Atom with call and return instructions implemented"
-    class="center"
-/>
+![Atom with call and return instructions implemented]({callretImage})
 
 While implementing this, I started to layout how I will identify more general
 instructions. Right now, I have a simple solution for HALT that just checks if
@@ -114,11 +110,8 @@ I like what I have for op codes, and I want this new system to tie into that.
 Each instruction is parallel signal that can branch of into the signals it
 needs:
 
-<img
-    src={improvedGeneralImage}
-    alt="Control unit with extra handling for generic instructions from 0x0000 to 0x000F"
-    class="center"
-/>
+![Control unit with extra handling for generic instructions from 0x0000 to
+0x000F]({improvedGeneralImage})
 
 For the new return instruction, I want to identify `0b0000000000000001`. The
 circuit on the left checks that bits [4-15] are all zero. If so, the decoder on
@@ -215,12 +208,8 @@ adding push and pop, but it looks effectively identical to when call and ret
 were added. The entirety of the difference between the two sets of instructions
 is contained within the control unit.
 
-<img
-    src={pushpopImage}
-    alt="Atom with push and pop instructions implemented, which looks the same as after call and ret"
-    class="center"
-/>
-
+![Atom with push and pop instructions implemented, which looks the same as after
+call and ret]({pushpopImage})
 
 The interesting change in the control unit is the addition of circuitry that can
 identify single register operations. Single register operations specifically
@@ -228,11 +217,8 @@ check that the bits [8-15] are `0b00000001`. I also cleaned up the circuitry for
 checking the lower 12 bits, grouping them into fours which let me reuse some of
 them for the single register operations.
 
-<img
-    src={moreGenericImage}
-    alt="Control unit with logic extended for single register operations"
-    class="center"
-/>
+![Control unit with logic extended for single register
+operations]({moreGenericImage})
 
 ### Testing
 
