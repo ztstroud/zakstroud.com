@@ -6,7 +6,7 @@
 
 html {
     color: var(--text-primary-color);
-    font-family: "Trebuchet MS", sans-serif;
+    font-family: "Verdana", sans-serif;
     line-height: 1.6;
 
     background-color: var(--background-color);
