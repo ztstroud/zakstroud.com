@@ -10,7 +10,7 @@ title: Fibonacci on Atom
     <title>{title} | Mini Computer</title>
 </svelte:head>
 
-### {title}
+# {title}
 
 With the ability to write procedures, I want to try writing some examples that
 are more complicated that my simple tests. I want to do this with a classic
