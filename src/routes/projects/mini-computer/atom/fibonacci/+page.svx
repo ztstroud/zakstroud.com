@@ -336,5 +336,9 @@ is totally bespoke.
         url: "/projects/mini-computer/atom/procedures/",
         text: "Procedures in Atom",
     }}
+    next={{
+        url: "/projects/mini-computer/atom/io/",
+        text:"I/O",
+    }}
 />
 
