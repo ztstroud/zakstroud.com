@@ -38,8 +38,10 @@
     >
     <p>
         I am a software developer at <b>Amazon</b> with over five years of experience building robust maintainable
-        software at scale. I graduated from the University of Utah's computer science program, where I also worked as a
-        teaching assitant. Interested in building and improving developer tooling.
+        software at scale. Our UI framework, library, and build tools allow hundreds of teams to build consistent
+        experiences across Amazon's federated architecture while allowing for site wide experimentation. I graduated
+        from the University of Utah's computer science program, where I also worked as a teaching assitant. I love
+        building developer tooling, creating concise ways for people to complete their work.
     </p>
 </div>
 
