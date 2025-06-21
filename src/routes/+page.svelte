@@ -37,9 +37,9 @@
         class="right"
     >
     <p>
-        I am a software developer at <b>Amazon</b> with 4+ years of experience building robust maintainable software at
-        scale. I graduated from the University of Utah's computer science program, where I also worked as a teaching
-        assitant. Interested in building and improving developer tooling.
+        I am a software developer at <b>Amazon</b> with over five years of experience building robust maintainable
+        software at scale. I graduated from the University of Utah's computer science program, where I also worked as a
+        teaching assitant. Interested in building and improving developer tooling.
     </p>
 </div>
 
